@@ -19,6 +19,15 @@ class AccountController {
       next(e);
     }
   }
+  async setPushSubscribers(req, res, next) {
+    try {
+      const { login, subscribers } = req.body;
+      const answer = await AccountService.setPushSubscribers(login, subscribers);
+      res.json(answer);
+    } catch (e) {
+      next(e);
+    }
+  }
   async setPosts(req, res, next) {
     try {
       const { login, posts } = req.body;

@@ -6,6 +6,7 @@ const router = new Router();
 
 router.post('/account', AccountController.createAccount);
 router.post('/subscribers', AccountController.setSubscribers);
+router.post('/pushSubscribers', AccountController.setPushSubscribers);
 router.post('/posts', AccountController.setPosts);
 router.get('/account/:login', AccountController.getAccountInfo);
 
