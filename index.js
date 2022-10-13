@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const router = require('./routers/index');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -10,6 +11,7 @@ const PORT = 5000 || process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', router);
 
 const start = async () => {
