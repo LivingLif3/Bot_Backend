@@ -31,12 +31,22 @@ class AccountService {
       return { message: 'account not found' };
     }
   }
-  async setPosts(accountLogin, posts) {
+  async setPushPosts(accountLogin, posts) {
     const account = await AccountModel.find({ accountLogin });
     if (account.length !== 0) {
       posts.forEach((post) => {
         account[0].accountPosts.push(post);
       });
+      await account[0].save();
+      return account[0];
+    } else {
+      return { message: 'account not found' };
+    }
+  }
+  async setPosts(accountLogin, posts) {
+    const account = await AccountModel.find({ accountLogin });
+    if (account.length !== 0) {
+      account[0].accountPosts = posts;
       await account[0].save();
       return account[0];
     } else {

@@ -37,6 +37,15 @@ class AccountController {
       next(e);
     }
   }
+  async setPushPosts(req, res, next) {
+    try {
+      const { login, posts } = req.body;
+      const answer = await AccountService.setPushPosts(login, posts);
+      res.json(answer);
+    } catch (e) {
+      next(e);
+    }
+  }
   async getAccountInfo(req, res, next) {
     try {
       const login = req.params.login;
