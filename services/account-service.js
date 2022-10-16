@@ -55,7 +55,11 @@ class AccountService {
   }
   async getAccountInfo(accountLogin) {
     const account = await AccountModel.find({ accountLogin });
-    return account[0];
+    if (account.length !== 0) {
+      return account[0];
+    } else {
+      return { message: 'account not found' };
+    }
   }
 }
 
